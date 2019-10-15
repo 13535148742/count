@@ -1,0 +1,106 @@
+.bg{
+    background-image: url("../image/bg1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.data{
+    background-image: url("../image/from.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 681px;
+    width: 390px;
+    position: absolute;
+    left: 10%;
+    top: 12%;
+    border-radius:30px;
+    box-shadow: 0 5px 40px 4px  rgba(0,0,0,.3);
+}
+.form-header{
+    position: absolute;
+    top:17%;
+    left: 0;
+    right: 0;
+}
+.form-header input{
+    width: 300px;
+    padding-left: 15px;
+}
+.count-in{
+    margin: 0 auto;
+    padding-top: 30px;
+}
+.conut-btn{
+    margin: 0 auto;
+    padding-top: 45px;
+}
+.form-bottom{
+    margin-left: 14%;
+    margin-top: -20px;
+}
+.form-bottom p{
+	margin-bottom: 0;
+}
+.bg-list{
+    background-color:rgba(255,255,255,0.3);
+    width: 50%;
+    height: 600px;
+    float: right;
+    position: absolute;
+    right: 10%;
+    top: 12%;
+    border-radius:30px;
+    box-shadow: 0 5px 40px 4px rgba(0,0,0,.3);   /*阴影*/
+   padding: 40px;
+}
+.res{
+    background-color:rgba(255,255,255,0.7);
+    width: 100%;
+    height: 100%;
+    border-radius:30px;     /*圆角*/
+   padding-top: 20px;
+}
+.count-center tr th,.count-center tr td{
+    text-align: center;
+    color: #444343;
+}
+.btn-sub{
+    background: rgb(67,132,234);font-size: 20px;
+}
+.btn-sub:hover,.btn-sub:active{
+    background: #256bda;
+}
+.form-width{
+    width: 80%;
+}
+.sub-btn>input{
+	background-color: #4384ea;
+	box-shadow: 0 6px 10px 2px rgba( 67, 132, 234, .3);
+}
+.sub-btn>input:hover{
+	background: #256bda;
+    box-shadow: 1px 10px 10px rgba(2,86,189,.3);
+    -webkit-transform: translateY(-6px);
+    -moz-transform: translateY(-6px);
+    transform: translateY(-6px);
+    transition: all 0.3s ease;
+}
+.table > thead > tr > th {
+    border-bottom: 1px solid #eaeaea;
+}
+.count-center tr th, .count-center tr td {
+    color: #333;
+}
+.table-stripe > tbody > tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+}
+.table-hover > tbody > tr:hover{
+	background-color: #e9f2fb;
+}
+@media (max-width: 1300px) {
+	.data{
+		left: 5%;
+	}
+	.bg-list{
+		right: 5%;
+	}
+}

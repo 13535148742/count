@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>计算</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+    <link href="../static/index/css/count.css" rel="stylesheet"/>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--header start-->
+    <div class="layui-header">
+        <div class="layui-logo">计算</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
+    <!--header end-->
+    <!--nav start-->
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="nav">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">计算</a>
+                    <dl class="layui-nav-child">
+                        <dd class="layui-this"><a href="打折后满减.html">打折后满减</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--nav end-->
+    <!--body start-->
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <body class="bg">
+        <div id="data" class="data">
+            <div style="margin-top: 15px;float: right;margin-right: 20px;">
+                <img src="../static/index/image/scene.png" />
+                <img src="../static/index/image/wifi.png" />
+                <img src="../static/index/image/power.png" />
+            </div>
+
+            <form method="post">
+                <div class="form-header">
+                    <input style="border-radius: 50px;height: 45px;" type="hidden"  placeholder="请输入原价" id="url"  value="" >
+                    <div class="input-group count-in form-width">
+                        <input style="border-radius: 50px;height: 45px;" type="text" class="form-control" placeholder="请输入原价" id="price" name="price" value="" required>
+                    </div>
+                    <div class="input-group count-in form-width">
+                        <input style="border-radius: 50px;height: 45px;" type="text" class="form-control " placeholder="折扣，例88要填两位或直接填小数" id="discount" name="discount" value="" required>
+                    </div>
+                    <div class="input-group count-in form-width">
+                        <input style="border-radius: 50px;height: 45px;" type="text" class="form-control " placeholder="满多少才减" id="man" name="man" value="" required>
+                    </div>
+                    <div class="input-group count-in form-width">
+                        <input style="border-radius: 50px;height: 45px;" type="text" class="form-control" placeholder="每满额减多少" id="jian" name="jian" value="" required>
+                    </div>
+                    <div  class="input-group conut-btn form-width sub-btn">
+                        <input style="border-radius: 50px;height: 45px;border: none;" type="button" id="sub" class="form-control btn btn-info btn-sub" value="提 交" >
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="form-bottom">
+                        <p style="color: red">如果需要计算多个,</p>
+                        <p style="color: red">请在原价哪里用英文逗号分隔输入</p>
+                        <p>例如：9999,8888,1000 就可以得到多个了</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="bg-list">
+            <div id="result" class="res">
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>总价</th>
+                        <th>现价</th>
+                        <th>打折优惠</th>
+                        <th>折后价</th>
+                        <th>满减优惠</th>
+                        <th>直降金额</th>
+                    </tr>
+                    </thead>
+                    <tbody class="list">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </body>
+    </div>
+    <!--body end-->
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+<script src="../static/layui/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element','layer'], function(){
+        var element = layui.element;
+        var $ = layui.$,layer = layui.layer;
+
+        $('#sub').click(function () {
+            var price = $('#price').val();
+            var discount = $('#discount').val();
+            var man = $('#man').val();
+            var jian = $('#jian').val();
+            if(price==''||man==''){
+                layer.msg('三个框都不能为空',{'icon':5,'time':1000});
+            }else{
+
+                //多价格计算
+                var price_array = price.split(',');
+                console.log(price_array);
+                if(discount >10){
+                    discount = discount/100;
+                }else if(discount>1 && discount<10){
+                    discount = discount/10;
+                }
+
+                //渲染的数据
+                var html = '';
+
+                for(var i=0;i < price_array.length;i++) {
+
+                    if(discount == ''){
+
+                        //折后价
+                        var sale_later_price = price_array[i];
+
+                        //打折优惠价格
+                        var sale_price = 0;
+
+                    }else{
+
+                        //折后价
+                        var sale_later_price = new Number(price_array[i] * discount).toFixed(0); //四舍五入
+
+                        //打折优惠价格
+                        var sale_price = price_array[i] - sale_later_price;
+                    }
+
+                    //满减优惠
+                    var man_jian_price = parseInt(sale_later_price / man) * jian;
+
+                    //总优惠价格
+                    var sale_count_price = sale_price + man_jian_price;
+
+                    //打折满减后价格
+                    var finally_price = sale_later_price - man_jian_price;
+
+                    html += "<tr>"
+                    html += "<td>"+(i+1)+"</td>"
+                    html += "<td>" + price_array[i] + "</td>"
+                    html += "<td>" + finally_price + "</td>"
+                    html += "<td>" + sale_price + "</td>"
+                    html += "<td>" + sale_later_price + "</td>"
+                    html += "<td>" + man_jian_price + "</td>"
+                    html += "<td>" + sale_count_price + "</td>"
+                    html += "</tr>"
+                }
+
+                $(".list").html(html)
+            }
+
+        })
+    });
+</script>
+</body>
+</html>
